@@ -1,0 +1,30 @@
+//https://www.geeksforgeeks.org/problems/find-the-sum-of-last-n-nodes-of-the-linked-list/1
+
+class Solution {
+
+    // Return the sum of last k nodes
+    public int sumOfLastN_Nodes(Node head, int n) {
+        // write code here
+        Node mainPointer = head;
+        Node refPointer = head;
+        int count = 0;
+
+        while (count < n) {
+            refPointer = refPointer.next;
+            count++;
+        }
+
+        while (refPointer != null) {
+            mainPointer = mainPointer.next;
+            refPointer = refPointer.next;
+        }
+
+        int sum = 0;
+        while (mainPointer != null) {
+            sum += mainPointer.data;
+            mainPointer = mainPointer.next;
+        }
+
+        return sum;
+    }
+}
