@@ -1,0 +1,33 @@
+//https://www.geeksforgeeks.org/problems/minimum-sum4058/1
+
+class Solution {
+    String minSum(int[] arr) {
+        // code here
+        Arrays.sort(arr);
+        
+        int n=arr.length;
+        StringBuilder val1=new StringBuilder(), val2=new StringBuilder();
+        for(int i=0;i<n;i++){
+            if(i%2==0)  val1.append(arr[i]);
+            else        val2.append(arr[i]);
+        }
+        
+        while(val1.length()>0 && val1.charAt(0)=='0')  val1.deleteCharAt(0);
+        while(val2.length()>0 && val2.charAt(0)=='0')  val2.deleteCharAt(0);
+        
+        StringBuilder sb = new StringBuilder();
+        int i=val1.length()-1, j=val2.length()-1, carry=0;
+        
+        while(i>=0 || j>=0 || carry>0){
+            int cur = carry + (i<0 ? 0 : (val1.charAt(i)-'0')) + (j<0 ? 0 : (val2.charAt(j)-'0'));
+            sb.append(cur%10);
+            carry=cur/10;
+            
+            i--;
+            j--;
+        }
+        
+        
+        return sb.reverse().toString();
+    }
+}
