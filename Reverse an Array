@@ -1,0 +1,12 @@
+//https://www.geeksforgeeks.org/problems/reverse-an-array/1
+
+class Solution {
+    public void reverseArray(int arr[]) {
+        // code here
+        List<Integer> list = Arrays.asList(Arrays.stream(arr).boxed().toArray(Integer[]::new));
+        Collections.reverse(list);
+        for (int i = 0; i < list.size(); i++) {
+            arr[i] = list.get(i);
+        }
+    }
+}
