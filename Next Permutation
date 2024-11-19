@@ -1,0 +1,33 @@
+//https://www.geeksforgeeks.org/problems/next-permutation5226/1
+
+class Solution {
+    void nextPermutation(int[] arr) {
+        // code here
+        int n=arr.length, pt1=n;
+        for(int i=n-2;i>=0;i--){
+            if(arr[i]<arr[i+1]){
+                pt1=i;
+                break;
+            }
+        }
+        
+        if(pt1==n){
+            Arrays.sort(arr);
+            return;
+        }
+        
+        int pt2=n;
+        for(int i=n-1;i>=0;i--){
+            if(arr[i]>arr[pt1]){
+                pt2=i;
+                break;
+            }
+        }
+        
+        int temp = arr[pt1];
+        arr[pt1] = arr[pt2];
+        arr[pt2] = temp;
+        
+        Arrays.sort(arr,pt1+1,n);
+    }
+}
