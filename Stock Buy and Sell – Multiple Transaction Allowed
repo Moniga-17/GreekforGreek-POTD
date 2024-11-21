@@ -1,0 +1,24 @@
+//https://www.geeksforgeeks.org/problems/stock-buy-and-sell2615/1
+
+class Solution {
+    public int maximumProfit(int prices[]) {
+        // code here
+         int maxProfit = 0, i = 0, n=prices.length;
+        while(i < n) {
+            while(i+1 < n && prices[i]>=prices[i+1])
+                i++;
+            
+                
+            int buy = i;
+            while(i+1 < n && prices[i] <= prices[i+1])
+                i++;
+                
+            int sell = i;
+            
+            maxProfit += prices[sell] - prices[buy];
+            
+            i++;
+        }
+        return maxProfit;
+    }
+}
