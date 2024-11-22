@@ -1,0 +1,13 @@
+//https://www.geeksforgeeks.org/problems/buy-stock-2/1
+
+class Solution {
+    public int maximumProfit(int prices[]) {
+        // Code here
+        int ans=0, buy=prices[0];
+        for(int i:prices){
+            buy = Math.min(buy, i);
+            ans = Math.max(ans, i-buy);
+        }
+        return ans;
+    }
+}
