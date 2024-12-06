@@ -1,0 +1,27 @@
+//https://www.geeksforgeeks.org/problems/find-h-index--165609/1
+
+class Solution {
+    // Function to find hIndex
+    public int hIndex(int[] citations) {
+        // code here{
+        int n = citations.length;
+        int[] freq = new int[n + 1];
+
+        for (int i = 0; i < n; i++) {
+            if (citations[i] >= n) {
+                freq[n]++;
+            } else {
+                freq[citations[i]]++;
+            }
+        }
+
+        int hIndex = n;
+        int num = freq[n];
+        while (num < hIndex) {
+            hIndex--;
+            num += freq[hIndex];
+        }
+        return hIndex;
+
+    }
+}
