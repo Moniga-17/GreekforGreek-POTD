@@ -1,0 +1,27 @@
+//https://www.geeksforgeeks.org/problems/k-th-element-of-two-sorted-array1317/1
+
+class Solution {
+    public int kthElement(int a[], int b[], int k) {
+        // code here
+        int n = a.length, m = b.length, min=-(int)1e9, max=(int)1e9;
+        if(n>m) return kthElement(b,a,k);
+        
+        int l=Math.max(k-m,0), r=Math.min(n,k);
+        
+        while(l<=r){
+            int mid = l+(r-l)/2;
+            
+            
+            int l1 = mid==0 ? min : a[mid-1];
+            int r1 = mid==n ? max : a[mid];
+            
+            int l2 = (k-mid==0) ? min : b[k-mid-1];
+            int r2 = (k-mid==m) ? max : b[k-mid];
+            
+            if(l1<=r2 && l2<=r1)  return Math.max(l1,l2);
+            else if(l2<=r1)  r=mid-1;
+            else            l=mid+1;
+        }
+        return -1;
+    }
+}
